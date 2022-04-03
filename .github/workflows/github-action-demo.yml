@@ -1,0 +1,17 @@
+name: Demo WorkFlow
+on: [push]
+jobs:
+  wersja-docker-python:
+  runs-on: ubuntu-latest
+  steps:
+    - run: python --version
+    - run: docker -v
+  pylint-tester:
+  runs-on: ubuntu-latest
+  steps:
+    - run: pylint app.py
+  uruchom-docker:
+  runs-on: ubuntu-latest
+  steps:
+    - run: docker build --tag test-flask-app .
+    - run: docker run -d -p 5000:5000 test-flask-app 
